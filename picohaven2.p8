@@ -6,14 +6,12 @@ __lua__
 
 -- thank you to:
 --  testing/feedback: @nephilim, seppo, @xcw
---  music remix by @gearfo, other music ideas by @hwd2002
+--  @gearfo for the theme music (w/ a light remix)
 --  the people who left nice comments 
 --   about picohaven1 and motivated a sequel
 
--- instructions, updates, 
---  and web-playable version:
--- https://www.lexaloffle.com/bbs/?tid=#####
--- ^^add new link
+-- instructions, updates, and web-playable version:
+-- https://www.lexaloffle.com/bbs/?tid=54850
 
 -- (todo) commented source on github at
 -- https://github.com/icegoat9/picohaven2
@@ -381,4 +379,18 @@ __music__
 00 0f10110e
 00 13145815
 02 16171819
+00 41424344
+00 41424344
+00 41424344
+00 41424344
+00 41424344
+00 41424344
+01 04056f4e
+00 07080973
+00 0b0c0d77
+00 0f101177
+00 0405126f
+00 07080973
+00 0b0c0d77
+02 0f101177
 

@@ -113,7 +113,7 @@ function _init()
   initpersist()
   --interpret pink (color 14) as transparent for sprites, black is not transparent
   palt(0b0000000000000010)
-  music(0)
+  music(16)
   changestate("splash")
 end
 
@@ -225,8 +225,7 @@ end
 --lint: mapmsg
 function initnewlevel()
   initlevel()
-  --play theme music, though don't restart music if it's already playing from splash screen
-  --if (prevstate!="splash") music(0)
+  music(0)  --theme music
   mapmsg=pretxt[dlvl]
   setprompt("\fc🅾️\f6:bEGIN")
   nextstate,_updstate,_drwstate="newturn",_upd🅾️,_drawlvltxt
@@ -680,7 +679,7 @@ function runattack(a,d)
     local mod=drawmodcard()
     -- TODO? restore or remove these old more verbose PICOhaven 1 mod card messages
     --if (tutorialmode) addmsg("yOU DRAW mODIFIER \f7"..mod)
-    if (tutorialmode) addmsg("yOU DRAW RANDOM\n mODIFIER CARD \f7"..mod)
+    if (tutorialmode) addmsg("yOU DRAW RANDOM ATTACK\n mODIFIER CARD \f7"..mod)
     msg="\f7["..mod.."\f7]\f6 \-f"
     if mod=="*2" then
       dmg*=2
@@ -2860,7 +2859,9 @@ end
 
 --lint: townmsg, townlst
 function inittown()
-  --if (prevstate=="splash" or prevstate=="pretown") music(0)
+  --play town theme music, though don't restart music if it's already
+  -- playing (e.g. if we're already in town or coming from splash screen)
+  if (prevstate=="pretown") music(16)
   save_game()
   --selx,sely=1,1 --not needed as reset in changestate()
   townmsg="yOU RETURN TO THE TOWN OF pICOHAVEN. "

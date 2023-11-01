@@ -251,7 +251,7 @@ Note: mnemonics only go so far and then you've used the whole common alphabet-- 
 
 During development I regularly ran into resource limits (tokens, characters, compressed size) and had to restructure code or data. Keeping some notes here about resource usage (more in notebook)
 
-### token inventory of PICOhaven2 v0.7 (in development), as of 2023-10-05
+### token inventory of PICOhaven2
 
 Total resource usage vs. PICO-8 platform limits, without minification: 
 - `8295 / 8192 tokens`
@@ -263,10 +263,10 @@ After simple minification (stripping whitespace and comments). Unlike PICOhaven 
 - `49,668 / 65,535 characters`
 - `17,889 / 15,616 (115%) compressed bytes`
 
-After aggressive minification with the shrinko-8 tool (stripping whitespace and comments, but also replacing most variables with cryptic 1-2 character names, combining code onto long lines, and some other unknown tricks-- no longer very readable which is why I maintain the original commented source):
-- `8135 / 8192 tokens`
-- `35,801 / 65,535 characters`
-- `14,947 / 15,616 (95%) compressed bytes`
+The 1.0 release, after aggressive minification with the shrinko-8 tool (stripping whitespace and comments, but also replacing most variables with cryptic 1-2 character names, combining code onto long lines, and some other unknown tricks-- no longer very readable which is why I maintain the original commented source):
+- `8192 / 8192 tokens` (whew!)
+- `36,030 / 65,535 characters`
+- `15,040 / 15,616 (96%) compressed bytes`
 
 ## Rough Dev Log / History
 
@@ -274,14 +274,14 @@ I also posted a few running notes and screenshots on Mastodon at: https://mastod
 
 | version | date | estimated hours | notes |
 | --- | --- | --- | --- |
-| PICOhaven v1.0e | 2021-Aug to Oct | ~200 | Original PICOhaven game, through release + a few minor revisions based on player feedback. |
+| PICOhaven v1.0e | 2021-Aug to Oct | 150-200 | Original PICOhaven game, through release + a few minor revisions based on player feedback. |
 | v1.1 | 2022-Aug | 10 | Refactor under the hood using new pico8 "custom fonts" feature, partly to improve UI, partly to free up space for a potential v2 some day... |
 | PICOhaven2 begins | 2023-Summer |  | Got more inspired with ideas for a sequel-- doodling story + mechanics concepts in a notebook |
 | P2 v0.1 | 2023-Aug | 20 | Specific concept crystallized, built rough barely-playable prototype of new mechanics (push, AoE), items, enemies. |
-| P2 v0.6 | Sep | 50 | Ongoing iteration on mechanics, UI, game content. Self-playtesting, revision, feedback from a few alpha playtesters. In the deep mud of "I think it's 90% done" for a while, but keep finding an area for improvement or room to squeeze in a tiny new feature. Kept hitting PICO8 code size limits so lots of "how do I shave 10 tokens off this code?" optimization puzzles which are fun in their own way. Taking breaks to work on tools (data compression, savegame editor, font tester) for variety. |
+| P2 v0.6 | Sep | 50 | Ongoing iteration on mechanics, UI, game content. Self-playtesting, revision, feedback from a few alpha playtesters. In the deep mud of "I think it's 90% done" for a while, but kept finding an area for improvement or room to squeeze in a tiny new feature. Kept hitting PICO8 code size limits so lots of "how do I shave 10 tokens off this code?" optimization puzzles which are fun in their own way. Taking breaks to work on tools (data compression, savegame editor, font tester) for variety. |
 | P2 v0.7 | Mid-Oct | 20 | "Almost done", working on repeated playthroughs to tweak enemy / level / upgrade balance, find bugs, etc. |
-| P2 v1.0 | Nov 1 | 25 | Squeezed in a few more improvements, bonus content, and bugfixes. Work on music and sfx. Manuals and documentation. |
+| P2 v1.0 | Oct 31 | 30 | Squeezed in a few more improvements, bonus content, and bugfixes. Music and sfx. Manuals and documentation. Released! |
 
-Overall, I'd estimate I spent ~150 hours on PICOhaven 2 (beyond the PICOhaven 1 work), on and off over the course of three months. Part of this time was just playing through the campaign over and over for testing and to iterate on designs, which even the Nth time I still found fun, I'm partly making the kind of game I want to play...
+So I'd estimate I spent ~120 hours on PICOhaven 2, on and off over the course of three months. Part of this time was just playing through the campaign over and over for testing and to iterate on level and card designs, which even the Nth time I still found fun-- turns out I'm partly just making the kind of game I want to play...
 
-Looking at miscellaneous github stats from my private repo for it, I had about 200 commits over this period, and modified about 1/3 of the codebase from PICOhaven 1 (~700 non-comment lines added, removed, or changed from the PICOhaven 1 code), though I'm not fully confident in how I calculated that. This also doesn't include the changes to the game content (graphics, enemy abilities, cards, story, and so on) which were stored either or compiled into long data strings that only took a single line of code each.
+Looking at miscellaneous github stats from my private repo for it, I had about 200 commits over this period, and modified about 1/3 of the codebase from PICOhaven 1 (~700 non-comment lines added, removed, or changed from the PICOhaven 1 code), though I'm not fully confident in how I calculated that. This also doesn't include the changes to the game content (graphics, enemy abilities, cards, story, and so on) which were compiled into long data strings that only used a single line of code each.

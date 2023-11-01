@@ -1,6 +1,6 @@
 # PICOhaven 2
 
-**PICOhaven 2** is a tiny retro videogame: a card-based tactical RPG / dungeon crawler inspired by my love of the board game Gloomhaven*. It's built on the delightful [PICO-8 fantasy console](https://www.lexaloffle.com/pico-8.php), which provides tight creative and scope constraints, such as a 128x128 pixel screen resolution, 16 preset colors, and only 32kB for code, graphics, and sound combined (a fraction of the size of even mobile games).
+**PICOhaven 2** is a tiny retro videogame: a card-based tactical RPG / dungeon crawler inspired by my love of the board game Gloomhaven* (and less directly, of other 2D tactical turn-based games such as the GBA Fire Emblem and Into The Breach). It's built on the delightful [PICO-8 fantasy console](https://www.lexaloffle.com/pico-8.php), which provides tight creative and scope constraints, such as a 128x128 pixel screen resolution, 16 preset colors, and only 32kB for code, graphics, and sound combined (a fraction of the size of even mobile games).
 
 ![screenshot](docs/picohaven2_27_384px.gif)
 
@@ -12,16 +12,15 @@ PICOhaven 2 adopts a modified & simplified version of the mechanics used in Gloo
 
 # Where to Play
 
-The simplest option is on the web, on the PICO-8 BBS at: **ADD LINK HERE**
+The simplest option is on the web, on the PICO-8 BBS at: https://www.lexaloffle.com/bbs/?tid=54850 (the below How-To-Play is also posted there).
 
-Alternately, you can download the below "cartridge image" picohaven2.p8.png and open it in the PICO-8 desktop application on Windows / Mac / Linux / Raspberry Pi, or load it onto a PICO-8 compatible retrogaming arcade or handheld such as the [Pimoroni Picade](https://shop.pimoroni.com/products/picade), [Gameforce](https://gameforce.fun/products/gameforce-handheld) or [Powkiddy RGB30](https://powkiddy.com/products/pre-sale-powkiddy-rgb30-rk3566-handheld-game-console-built-in-wifi).
+Alternately, you can download the below "cartridge image" picohaven2_###.p8.png and open it in the PICO-8 desktop application on Windows / Mac / Linux / Raspberry Pi, or load it onto a PICO-8 compatible retrogaming arcade or handheld such as the [Pimoroni Picade](https://shop.pimoroni.com/products/picade), [Gameforce](https://gameforce.fun/products/gameforce-handheld) or [Powkiddy RGB30](https://powkiddy.com/products/pre-sale-powkiddy-rgb30-rk3566-handheld-game-console-built-in-wifi).
 
 ![handheld](docs/rgb30.JPG)
 
 That's right, the entire game (code, graphics, sound, and data) is encoded as 32kB of data hidden inside the below 160x205 pixel image!
 
-![cartridge](releases/picohaven2_v09a.p8.png) TODO: update this cart to be the 1.0 version...
-
+![cartridge](releases/picohaven2_v10a.p8.png)
 
 # How to Play / Rules
 
@@ -83,6 +82,14 @@ The Wound condition can be applied by certain attack cards or modifiers. It caus
 The Stun condition causes the afflicted character to skip their next turn. This may happen during the current round, or next round (if the stun is applied after the character has already acted this round).
 
 If you or an enemy have the Shield condition (either innately or from playing a card), all incoming attacks have their damage reduced by that amount. This does not apply to damage sources other than attacks...
+
+**Attack Modifier Cards**
+
+Whenever you attack, you draw a random "attack modifier card" that increases or decreases the damage. This deck begins the game with a balance of + and - modifiers, most of them "-1", "+0", or "+1":
+
+![screenshot](docs/picohaven2_35_mods.png)
+
+As you level-up through the game, you'll be able to remove some of these modifiers and replace them with more powerful ones that increase the values or even add conditions to them, swaying randomness in your favor and making even your initial deck of action cards more powerful...
 
 **Message Log / Damage Animations**
 
@@ -152,9 +159,9 @@ Despite these differences, many key concepts and strategies from the Gloomhaven 
 
 # Special Thanks
 
-* To the small group of fans of PICOhaven 1 who left nice comments on it on the BBS or Reddit, my favorite being "What an insane labor of love."
-* To @nephilim, @xcw, and seppo for playtesting and very useful feedback on early versions of the game, which led to a number of UI changes and some new gameplay features
-* To @gearfo and @hwd2002 who responded to my "call for remix / reinterpretations of PICOhaven 1 music". I ended up using a barely modified version of @gearfo's remix as the music for PICOhaven 2 (but sadly ran out of space to include two theme songs).
+* To the small group of fans of PICOhaven 1 who left nice comments on it on the BBS or Reddit, such as "What an insane labor of love."
+* To @nephilim, xcw, and seppo for playtesting or useful feedback on early versions of the game, which led to various UI changes and some new gameplay features
+* To @gearfo and @hwd2002 who responded to my "call for remix / reinterpretations of PICOhaven 1 music". I ended up using a variant of @gearfo's composition as the music for PICOhaven 2 (I sadly ran out of space to include a major second theme song, as I ended up using 2/3 of the SFX memory to store binary game data...)
 * And to the entire PICO8 community (on the BBS, Reddit, and Discord)-- what a helpful, supportive group.
 
 # Source Code + Development Documentation
@@ -169,4 +176,4 @@ I also posted some light devlog-ish updates on Mastodon (https://mastodon.gamede
 
 If you're one of the small number of people who finds this game and plays it (and the even smaller number who look through this README or the source code), I'd love to hear what you think. This was just a free labor-of-love project in my spare time over the past months.
 
-You can reach me on Mastodon, as @icegoat on the PICO8 BBS (LAUNCH POST LINK), @icegoat9 on reddit (LAUNCH POST LINK), etc...
+You can reach me on Mastodon, as @icegoat on the [PICO8 BBS](https://www.lexaloffle.com/bbs/?tid=54850), @icegoat9 on reddit (TODO: add launch post link) and [Itch](https://icegoat9.itch.io/), and so on...
