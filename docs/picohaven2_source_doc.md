@@ -1,22 +1,22 @@
 Developer notes to accompany the source code for [PICOhaven 2](../README.md), a tactical card-based turn-based dungeon crawler / light RPG built on the the [PICO-8](https://www.lexaloffle.com/pico-8.php) fantasy console.
 
-This file is internal development notes, see the README linked above for more of a game overview including where and how to play it.
+This file is internal development notes, see the [README](../README.md) for more of a game overview including where and how to play it.
 
-These are mostly notes-to-self, to make it easier to remember the big picture if I take a break from this project and come back to it months or years later (for example, for a sequel...). But perhaps they'll be useful to others who look into the source code. Fair warning-- I don't claim to be a software engineering expert, and I had to make many tradeoffs between code abstraction vs. pragmatically fitting into the size constraints of the PICO-8 environment.
+These are mostly notes-to-self, to make it easier to remember the big picture if I take a break from this project and come back to it months or years later (for example, for a sequel...). But perhaps they'll be useful to others who look into the source code. Fair warning-- I don't claim to be a software engineering expert, and I had to make many tradeoffs between code abstraction vs. pragmatically fitting desired features into the size constraints of the PICO-8 environment.
 
 PICOhaven 2 is a sequel to [PICOhaven](https://github.com/icegoat9/picohaven#readme), and adapts the same core "engine" built for that, with modest changes to add some new game features and strip out unused ones to make space.
 
 # Development Workflow / Build + Run notes
 
 The game source is primarily split between two files:
-- `picohaven2.lua` -- main game code, about 1700 lines of PICO-8 flavored Lua, plus comments
-- `picohaven2.p8` -- the game 'cart' which contains the sprites, map, and sfx (plus some game strings stored as binary in unused gfx/sfx space, via helper cart storedatatocart...)
+- `picohaven2.lua` -- main game code, about 1800 lines of PICO-8 flavored Lua, plus comments
+- `picohaven2.p8` -- the game 'cart' which contains the sprites, map, and sfx (plus some game strings stored as binary in unused gfx/sfx space, via helper cart `storedatatocart.p8`...)
 
 Typical development + test loop:
 - Edit the source code in `picohaven2.lua` (using VScode or another external editor-- it's too large for the PICO-8 built-in editor to open because of its in-code comments, which I didn't want to remove)
 - Whenever you want to run it, strip comments and reduce size with the third-party shrinko-8 tool, e.g.: `python3 ../shrinko8-main/shrinko8.py picohaven2.lua picohaven2_minified.lua --minify-safe-only`
-- In the PICO-8 application, load and run `picohaven2.p8` (which includes the source from `picohaven2_minfied.lua`). If it's already open you can just hit Ctrl-R to reload changes (after running the minify command above), which gives a nice quick testing loop.
-- Edit the picohaven.p8 file in the PICO-8 IDE when needed to edit graphics, maps, sound, music
+- In the PICO-8 application, load and run `picohaven2.p8` (which includes the source from `picohaven2_minified.lua`). If a previous version is already open you can just hit Ctrl-R to reload changes (after running the minify command above), which gives a nice quick testing loop.
+- Edit picohaven2.p8 in the PICO-8 IDE when needed to edit graphics, maps, sound, music
 - Note: typing INFO at the PICO-8 commandline after a change will show token/character usage
 - Periodically, lint the code to check for unused variables (potential wasted tokens!), unclear local/global variable declarations, and so on, with a command such as `python3 ../shrinko8-main/shrinko8.py --lint picohaven2.lua | less`
 
@@ -28,28 +28,35 @@ In addition, some notes I refer back to during development:
 
 ## Color palette
 
-The game uses a reduced palette of 10 colors (with minor exceptions for the player and final boss):
-- 0 (black) -- general use
-- 1 (dark blue) -- environment (water)
-- 3 (dark green) -- occasional environmental accents (trees, outdoor buildings)
-- 5 (dark grey) -- general use
-- 6 (light grey) -- text, obstacles, general use
-- 7 (white) -- emphasized text
-- 8 (red) -- health, wound, attacks, warnings, elite enemy eyes, sprite highlights
-- 9 (orange) -- collectable treasure
-- 12 (cyan) -- mostly reserved for UI elements: selection cursor, selected items, button-press prompts. Also used for "stun" condition and certain emphasized text
-- 13 (purplish grey) -- general use
+The game uses a reduced palette of 10 colors (with minor exceptions for the player and final boss), a black/blue/purple/grey ramp and some accents:
 
-## Sprite Flag Meanings
+![palette](palette_0.png)
 
-- 0: *(DEPRECATED, was: actor initialization during initlevel)*
-- 1: impassible (to move and LOS)
-- 2: impassible move (unless jump), allows LOS
-- 3: animated scenery (default: 4 frames)
-- 4: triggers immediate action (trap, door)
-- 5: triggers EOT action (treasure)
-- 6: edge of room (unfog up to this border)
-- 7: is doorway (trigger door open at EOT)
+| pico8# | color       | usage |
+| - | --------- | --- |
+| 0 | black | general use |
+| 1 | dark blue | environment (water) |
+| 13 | purple/grey | general use |
+| 5 | dark grey | general use |
+| 6 | light grey | text, obstacles, general use |
+| 3 | dark green | environment (outdoor accents) |
+| 8 | red | health, wound, attacks, warnings, elite enemy eyes, sprite highlights |
+| 9 | orange | treasure |
+| 12 | light blue | mostly reserved for UI elements / prompts. also used for "stun" and "push" |
+| 7 | white | emphasized text |
+
+## Sprite Flags
+
+| flag# | meaning |
+| - | - |
+| 0 | *DEPRECATED, was: actor initialization during initlevel* |
+| 1 | impassible (to move and LOS) |
+| 2 | impassible move (unless jump), allows LOS |
+| 3| animated scenery (default: 4 frames) |
+| 4| triggers immediate action (trap, door) |
+| 5| triggers EOT action (treasure) |
+| 6| edge of room (unfog up to this border) |
+| 7| is doorway (trigger door open at EOT) |
 
 ## Gameflow State Machine
 
@@ -263,7 +270,7 @@ After simple minification (stripping whitespace and comments). Unlike PICOhaven 
 - `49,668 / 65,535 characters`
 - `17,889 / 15,616 (115%) compressed bytes`
 
-The 1.0 release, after aggressive minification with the shrinko-8 tool (stripping whitespace and comments, but also replacing most variables with cryptic 1-2 character names, combining code onto long lines, and some other unknown tricks-- no longer very readable which is why I maintain the original commented source):
+v0.9 just before release, after aggressive minification with the shrinko-8 tool (stripping whitespace and comments, but also replacing most variables with cryptic 1-2 character names, combining code onto long lines, and some other unknown tricks-- no longer very readable which is why I maintain the original commented source):
 - `8192 / 8192 tokens` (whew!)
 - `36,030 / 65,535 characters`
 - `15,040 / 15,616 (96%) compressed bytes`
@@ -282,6 +289,6 @@ I also posted a few running notes and screenshots on Mastodon at: https://mastod
 | P2 v0.7 | Mid-Oct | 20 | "Almost done", working on repeated playthroughs to tweak enemy / level / upgrade balance, find bugs, etc. |
 | P2 v1.0 | Oct 31 | 30 | Squeezed in a few more improvements, bonus content, and bugfixes. Music and sfx. Manuals and documentation. Released! |
 
-So I'd estimate I spent ~120 hours on PICOhaven 2, on and off over the course of three months. Part of this time was just playing through the campaign over and over for testing and to iterate on level and card designs, which even the Nth time I still found fun-- turns out I'm partly just making the kind of game I want to play...
+I'd estimate I spent 100-150 hours on PICOhaven 2, on and off over the course of three months. Part of this time was just playing through the campaign over and over for testing and to iterate on level and card designs, which even the Nth time I still found fun-- turns out I'm partly just making the kind of game I want to play...
 
-Looking at miscellaneous github stats from my private repo for it, I had about 200 commits over this period, and modified about 1/3 of the codebase from PICOhaven 1 (~700 non-comment lines added, removed, or changed from the PICOhaven 1 code), though I'm not fully confident in how I calculated that. This also doesn't include the changes to the game content (graphics, enemy abilities, cards, story, and so on) which were compiled into long data strings that only used a single line of code each.
+Looking at miscellaneous github stats from my private repo, I made about 200 commits over this period, and modified about 1/3 of the codebase / "engine" from PICOhaven 1 (~700 non-comment lines added, removed, or changed from the PICOhaven 1 code, though I'm not fully confident in how I calculated that). This also doesn't include the changes to the game content (graphics, enemy abilities, cards, story, and so on) which were compiled into long data strings.

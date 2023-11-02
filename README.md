@@ -12,21 +12,25 @@ PICOhaven 2 adopts a modified & simplified version of the mechanics used in Gloo
 
 # Where to Play
 
-The simplest option is on the web, on the PICO-8 BBS at: https://www.lexaloffle.com/bbs/?tid=54850 (the below How-To-Play is also posted there).
+The simplest option is on the web (on either a computer or phone), on the PICO-8 BBS at: https://www.lexaloffle.com/bbs/?tid=54850 (the below How-To-Play is also posted there).
 
-Alternately, you can download the below "cartridge image" picohaven2_###.p8.png and open it in the PICO-8 desktop application on Windows / Mac / Linux / Raspberry Pi, or load it onto a PICO-8 compatible retrogaming arcade or handheld such as the [Pimoroni Picade](https://shop.pimoroni.com/products/picade), [Gameforce](https://gameforce.fun/products/gameforce-handheld) or [Powkiddy RGB30](https://powkiddy.com/products/pre-sale-powkiddy-rgb30-rk3566-handheld-game-console-built-in-wifi).
-
-![handheld](docs/rgb30.JPG)
+Alternately, you can download this below "cartridge image" picohaven2_###.p8.png and open it in the PICO-8 desktop application on Windows / Mac / Linux / Raspberry Pi, or load it onto a PICO-8 compatible retrogaming device.
 
 That's right, the entire game (code, graphics, sound, and data) is encoded as 32kB of data hidden inside the below 160x205 pixel image!
 
 ![cartridge](releases/picohaven2_v10a.p8.png)
+
+Playing that "cartridge" on the [Powkiddy RGB30](https://powkiddy.com/products/pre-sale-powkiddy-rgb30-rk3566-handheld-game-console-built-in-wifi), for example:
+
+![handheld](docs/rgb30.JPG)
 
 # How to Play / Rules
 
 The controls for the game are the standard PICO-8 controls:
 
 These depend on whether you're playing on a keyboard, in a mobile web browser, or on a retro handheld with physical buttons, but in general they are just the arrow keys / D-pad, the "O" button (mapped to the 'z' key on keyboards) as the main "select/action" button, and occasionally the "X" button ('x' key on keyboards) for "cancel/undo".
+
+The game will also automatically save your progress every time you return to town, so you can close the game / browser and come back to it later on the same device.
 
 If you've previously played PICOhaven 1, the interface and rules are similar enough that you can jump right in!
 
@@ -79,7 +83,7 @@ Also note that if you are selecting cards from your hand for the turn and can't 
 
 The Wound condition can be applied by certain attack cards or modifiers. It causes the afflicted character to lose 1HP at the end of every round. A "heal" action removes the wound condition in addition to healing as normal.
 
-The Stun condition causes the afflicted character to skip their next turn. This may happen during the current round, or next round (if the stun is applied after the character has already acted this round).
+The Stun condition causes the afflicted character to skip their next turn. This may happen during the current round, or next round (if stun is applied to a character that's already acted this round).
 
 If you or an enemy have the Shield condition (either innately or from playing a card), all incoming attacks have their damage reduced by that amount. This does not apply to damage sources other than attacks...
 
@@ -105,7 +109,7 @@ Need an extra challenge, want to make it easier, or have you finished  the game 
 
 **XP / Leveling Up**
 
-You gain XP for winning scenarios, as well as for killing enemies and using burned cards, even if you fail the scenario. When you accrue enough to level up, you get to swap in one of two new cards to your deck, as well as upgrade your attack modifier deck (which starts the game evenly balanced with + and - modifiers).
+You gain XP for winning scenarios, as well as for killing enemies and using burned cards, even if you fail the scenario. When you accrue enough to level up, you get to swap in one of two new cards to your deck, as well as upgrade your attack modifier deck.
 
 **Long Rest action**
 
@@ -118,6 +122,7 @@ But this "long rest" action gives you the benefit of choosing which card to burn
 This isn't comprehensive, but a few tips if you're finding this challenging:
 
 * Health is a precious resource: try to position yourself so that as few enemies as possible can hit you (since you can see what each enemy will be doing this round, if you move faster than them you may be able to end your turn just out of range of them, forcing them to waste their turn). Ranged attacks are also useful here.
+* Be cautious about using too many "burn on use" cards during the first half of a scenario-- they are powerful, but also reduce the size of your deck after a reshuffle, reducing the number of turns you have to win the scenario before you run out of cards.
 * When you select your two cards from hand for the round, the one you select first sets your initiative for the round (see the cues in the UI). Going faster than enemies is often useful, but depending on your positioning you can also strategically use slow initiatives to let enemies come to you, and to let you hit them and then run out of range before the next round.
 * Each enemy type has their own group of behaviors: fast vs. slow initiative, melee vs. ranged attacks, high vs. low movement, and a few have unique more dangerous abilities. You can use knowledge of them over time to prioritize which ones to tackle first or to stay away from.
 * Enemies with shield reduce all your incoming _attacks_ by that amount. Strategies against these can include high-value attacks, or other sources of damage (which bypass shield values): traps, pushing into objects, wounds.
@@ -147,7 +152,7 @@ However, there are a number of differences from the Gloomhaven game mechanics, s
 * When you open a door, that ends your move, but revealed enemies do not act until the next round.
 * There are no battle goals, enhancements, prosperity, reputation, new character class unlocks, and so on.
 * Enemy difficulty does _not_ automatically scale with your level (that was less important as this is a simpler, more linear, single-character campaign)
-* The enemy movement AI is not exactly the same, though it still follows a deterministic algorithm where enemies try to move into range and then attack, and can move through or around their allies as needed. One notable difference: enemies do not see traps and do not try to navigate around them, to make it somewhat easier to use traps to your advantage.
+* The enemy movement AI is different, though it still follows a deterministic algorithm where enemies try to move into range and then attack, and can move through or around their allies as needed. One notable difference: enemies do not see traps and do not try to navigate around them, to make it somewhat easier to use traps to your advantage.
 
 Despite these differences, many key concepts and strategies from the Gloomhaven family of board games are relevant, including:
 * Managing hand size, exhaustion, use of burn cards
@@ -174,6 +179,8 @@ I also posted some light devlog-ish updates on Mastodon (https://mastodon.gamede
 
 # Contact Info / Feedback
 
-If you're one of the small number of people who finds this game and plays it (and the even smaller number who look through this README or the source code), I'd love to hear what you think. This was just a free labor-of-love project in my spare time over the past months.
+If you're one of the small number of people who finds this game and plays it (and the even smaller number who look through this README or the source code), I'd love to hear what you think.
 
-You can reach me on Mastodon, as @icegoat on the [PICO8 BBS](https://www.lexaloffle.com/bbs/?tid=54850), @icegoat9 on reddit (TODO: add launch post link) and [Itch](https://icegoat9.itch.io/), and so on...
+You can reach me on Mastodon, as @icegoat on the [PICO8 BBS](https://www.lexaloffle.com/bbs/?tid=54850), @icegoat9 on [reddit](https://www.reddit.com/r/pico8/comments/17m9jhl/picohaven_2_release_cardbased_tactical_rpg/) and [Itch](https://icegoat9.itch.io/), and so on...
+
+And I expect I may post some bugfixes/updates to the game in the coming months, they'll get posted here / on the lexaloffle BBS / on Mastadon, at least.
