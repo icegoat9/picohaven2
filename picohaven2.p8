@@ -1,7 +1,7 @@
 pico-8 cartridge // http://www.pico-8.com
 version 41
 __lua__
---- picohaven 2, V1.0
+--- picohaven 2, V1.0b
 --- BY icegoat, oct 2023
 
 -- thank you to:

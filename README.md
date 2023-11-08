@@ -18,7 +18,7 @@ Alternately, you can download this below "cartridge image" picohaven2_###.p8.png
 
 That's right, the entire game (code, graphics, sound, and data) is encoded as 32kB of data hidden inside the below 160x205 pixel image!
 
-![cartridge](releases/picohaven2_v10a.p8.png)
+![cartridge](releases/picohaven2_v10b.p8.png)
 
 Playing that "cartridge" on the [Powkiddy RGB30](https://powkiddy.com/products/pre-sale-powkiddy-rgb30-rk3566-handheld-game-console-built-in-wifi), for example:
 

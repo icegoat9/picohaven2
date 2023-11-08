@@ -2,7 +2,7 @@ Developer notes to accompany the source code for [PICOhaven 2](../README.md), a 
 
 This file is internal development notes, see the [README](../README.md) for more of a game overview including where and how to play it.
 
-These are mostly notes-to-self, to make it easier to remember the big picture if I take a break from this project and come back to it months or years later (for example, for a sequel...). But perhaps they'll be useful to others who look into the source code. Fair warning-- I don't claim to be a software engineering expert, and I had to make many tradeoffs between code abstraction vs. pragmatically fitting desired features into the size constraints of the PICO-8 environment.
+These are mostly notes-to-self, to make it easier to remember the big picture if I take a break from this project and come back to it months or years later (for example, for a sequel...). But perhaps they'll be useful to others who look into the source code. Fair warning-- I don't claim to be a software engineering expert, and I had to make many tradeoffs between code abstraction vs. pragmatically fitting features into the size constraints of the PICO-8 environment via narrow good-enough solutions.
 
 PICOhaven 2 is a sequel to [PICOhaven](https://github.com/icegoat9/picohaven#readme), and adapts the same core "engine" built for that, with modest changes to add some new game features and strip out unused ones to make space.
 

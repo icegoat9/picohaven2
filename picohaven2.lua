@@ -106,7 +106,6 @@ function _init()
   --  godmode=true --power up character for debugging and rapid play-through testng
   dlvl=2  --starting dungeon #
   --  stop("level debug mode.\ntype 'dlvl=##' to set level, then 'resume'")
-  
   initfont()
   initglobals()
   initdbs()
@@ -857,7 +856,7 @@ function dmgactor(a,val)
       -- enemy sprite from play area
       if not a.obj then
         --TODO? comment out this tutorial line to save tokens, unnecessary
-        if (tutorialmode) addmsg(" AND DROPS gOLD (●)")
+        --if (tutorialmode) addmsg(" AND DROPS gOLD (●)")
         local m=mget(a.x,a.y)
         local cspr=13 --coin sprite
         -- if there's already 1 or 2 coins on this space, update to 
@@ -1417,6 +1416,9 @@ end
 function initpretown()
   setprompt("\fc🅾️\f6:rETURN TO tOWN")
   nextstate,_drwstate="town",_drawlvltxt
+  --shift to the mellow town music now, if just finished level
+  -- (not if coming back here via 'Review Story' town menu item)
+  if (prevstate=="endlevel") music(16)
   --could comment below out to save 3 tokens since we know _updstate was already set
   -- to this in initendlevel() last state (but that's risky/brittle to future state flow changes)
   _updstate=_upd🅾️
@@ -1833,6 +1835,12 @@ function initfont()
   fontsub=splt(" ; \-f;[;[\-f;];\-f];(;(\-f;);\-f);:;\-f:;█;\f6█;▒;\f8▒;🐱;_;⬇️;\fc⬇️;░;\f8░\-a\f6🐱;✽;_;●;\fa●\-a\f9✽;♥;\f8♥;☉;\f8☉\-a\f6🐱;웃;\f6웃;⌂;_;⬅️;\f6⬅️\-a\f9⌂;😐;\f6😐\-a\f4♪;♪;_;🅾️;\fc🅾️;◆;\fc◆\f6;…;_;➡️;\f6➡️\-a\f4…;★;\f6★;⧗;\f8⧗\-a\f6🐱;⬆️;\fc⬆️;∧;\f8∧;❎;\fc❎;▤;\f8▤;▥;\fc▥;あ;あ\-a\f8ち;い;い\-a\f8つ;う;う\-a\f1て;え;え\-a\fdと;お;\f8お\-a\f6な;く;\f8く\-a\f6き;け;\fcけ\f6;こ;\fcこ\f6;さ;\fcさ\f6;し;\fcし\f6",false,true)
   --test version w/ some diy proportional characters (WIP)
   --fontsub=splt("I;\-fI\-f;J;J\-f;L;\-fL; ; \-f;[;[\-f;];\-f];(;(\-f;);\-f);:;\-f:;█;\f6█;▒;\f8▒;🐱;_;⬇️;\fc⬇️;░;\f8░\-a\f6🐱;✽;_;●;\fa●\-a\f9✽;♥;\f8♥;☉;\f8☉\-a\f6🐱;웃;\f6웃;⌂;_;⬅️;\f6⬅️\-a\f9⌂;😐;\f6😐\-a\f4♪;♪;_;🅾️;\fc🅾️;◆;\fc◆\f6;…;_;➡️;\f6➡️\-a\f4…;★;\f6★;⧗;\f8⧗\-a\f6🐱;⬆️;\fc⬆️;∧;\f8∧;❎;\fc❎;▤;\f8▤;▥;\fc▥;あ;あ\-a\f8ち;い;い\-a\f8つ;う;う\-a\f1て;え;え\-a\fdと;お;\f8お\-a\f6な;く;\f8く\-a\f6き;け;\fcけ\f6;こ;\fcこ\f6;さ;\fcさ\f6;し;\fcし\f6",false,true)
+
+  --quick hack: add pause menu item to swap back to traditional
+  -- all-caps PICO8 font for the letters A-Za-z only (keep the
+  -- custom-sprite-icon aspects of the font)
+  --menuitem(1,"->allcaps_font",function () poke(0x5600,unpack(split"4,6,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,7,7,7,7,0,0,0,0,7,7,7,0,0,0,0,0,7,5,7,0,0,0,0,0,5,2,5,0,0,0,0,0,5,0,5,0,0,0,0,0,5,5,5,0,0,0,0,4,6,7,6,4,0,0,0,1,3,7,3,1,0,0,0,7,1,1,1,0,0,0,0,0,4,4,4,7,0,0,0,5,7,2,7,2,0,0,0,0,0,2,0,0,0,0,0,0,0,0,1,2,0,0,0,0,0,0,3,3,0,0,0,5,5,0,0,0,0,0,0,2,5,2,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,0,2,0,0,0,5,5,0,0,0,0,0,0,5,7,5,7,5,0,0,0,7,3,6,7,2,0,0,0,5,4,2,1,5,0,0,0,3,3,6,5,7,0,0,0,4,2,0,0,0,0,0,0,2,1,1,1,2,0,0,0,2,4,4,4,2,0,0,0,5,2,7,2,5,0,0,0,0,2,7,2,0,0,0,0,0,0,0,2,1,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,2,0,0,0,4,2,2,2,1,0,0,0,7,5,5,5,7,0,0,0,3,2,2,2,7,0,0,0,7,4,7,1,7,0,0,0,7,4,6,4,7,0,0,0,5,5,7,4,4,0,0,0,7,1,7,4,7,0,0,0,1,1,7,5,7,0,0,0,7,4,4,4,4,0,0,0,7,5,7,5,7,0,0,0,7,5,7,4,4,0,0,0,0,2,0,2,0,0,0,0,0,2,0,2,1,0,0,0,4,2,1,2,4,0,0,0,0,7,0,7,0,0,0,0,1,2,4,2,1,0,0,0,7,4,6,0,2,0,0,0,2,5,5,1,6,0,0,0,6,5,7,5,5,0,0,0,7,5,3,5,7,0,0,0,6,1,1,1,6,0,0,0,3,5,5,5,3,0,0,0,7,1,3,1,7,0,0,0,7,1,3,1,1,0,0,0,6,1,1,5,7,0,0,0,5,5,7,5,5,0,0,0,7,2,2,2,7,0,0,0,7,2,2,2,3,0,0,0,5,5,3,5,5,0,0,0,1,1,1,1,7,0,0,0,7,7,5,5,5,0,0,0,3,5,5,5,5,0,0,0,6,5,5,5,3,0,0,0,7,5,7,1,1,0,0,0,2,5,5,3,6,0,0,0,3,5,3,5,5,0,0,0,6,1,7,4,3,0,0,0,7,2,2,2,2,0,0,0,5,5,5,5,6,0,0,0,5,5,5,7,2,0,0,0,5,5,5,7,7,0,0,0,5,5,2,5,5,0,0,0,5,5,7,4,7,0,0,0,7,4,2,1,7,0,0,0,3,1,1,1,3,0,0,0,1,2,2,2,4,0,0,0,6,4,4,4,6,0,0,0,2,5,0,0,0,0,0,0,0,0,0,0,7,0,0,0,2,4,0,0,0,0,0,0,6,5,7,5,5,0,0,0,7,5,3,5,7,0,0,0,6,1,1,1,6,0,0,0,3,5,5,5,3,0,0,0,7,1,3,1,7,0,0,0,7,1,3,1,1,0,0,0,6,1,1,5,7,0,0,0,5,5,7,5,5,0,0,0,7,2,2,2,7,0,0,0,7,2,2,2,3,0,0,0,5,5,3,5,5,0,0,0,1,1,1,1,7,0,0,0,7,7,5,5,5,0,0,0,3,5,5,5,5,0,0,0,6,5,5,5,3,0,0,0,7,5,7,1,1,0,0,0,2,5,5,3,6,0,0,0,3,5,3,5,5,0,0,0,6,1,7,4,3,0,0,0,7,2,2,2,2,0,0,0,5,5,5,5,6,0,0,0,5,5,5,7,2,0,0,0,5,5,5,7,7,0,0,0,5,5,2,5,5,0,0,0,5,5,7,4,7,0,0,0,7,4,2,1,7,0,0,0,6,2,3,2,6,0,0,0,2,2,2,2,2,0,0,0,3,2,6,2,3,0,0,0,0,4,7,1,0,0,0,0,0,2,5,2,0,0,0,0,16,8,5,2,5,0,0,0,17,10,4,10,17,0,0,0,0,0,4,0,0,0,0,0,0,31,14,4,0,0,0,0,21,0,21,0,21,0,0,0,14,23,31,31,14,0,0,0,14,31,31,31,14,0,0,0,10,31,31,14,4,0,0,0,21,0,0,0,0,0,0,0,6,9,9,29,9,0,0,0,0,0,0,0,31,0,0,0,4,14,21,4,31,0,0,0,3,3,15,31,31,0,0,0,3,3,15,31,0,0,0,0,14,17,21,17,14,0,0,0,4,12,31,12,4,0,0,0,0,0,4,2,1,0,0,0,23,12,28,18,17,0,0,0,31,31,31,14,4,0,0,0,4,0,17,0,4,0,0,0,0,4,14,31,0,0,0,0,0,0,0,0,0,0,0,0,4,14,23,31,14,0,0,0,14,21,27,21,14,0,0,0,0,0,31,0,0,0,0,0,21,4,31,4,21,0,0,0,18,9,5,18,13,0,0,0,4,17,4,17,4,0,0,0,0,10,31,10,0,0,0,0,14,31,31,14,14,0,0,0,28,24,20,2,1,0,0,0,14,27,19,31,14,0,0,0,14,21,27,21,14,0,0,0,14,31,31,31,14,0,0,0,10,17,31,17,10,0,0,0,14,21,4,21,14,0,0,0,0,10,27,10,0,0,0,0,4,14,0,14,4,0,0,0,4,12,31,12,4,0,0,0,10,31,10,31,10,0,0,0,31,17,17,17,31,0,0,0,0,0,0,0,0,0,0,0,2,1,0,16,8,0,0,0,0,0,4,0,0,0,0,0,0,0,10,0,0,0,0,0,0,14,21,14,4,0,0,0,0,8,4,2,1,0,0,0")) end)
+  -- ignore this one: menuitem(1,"-> system font",function () poke(0x5f58,0) end)
 end
 
 --take input string to display, replaces CAPITAL chars representing
@@ -2423,7 +2431,7 @@ function initglobals()
   dirx,diry=split("-1,1,0,0"),split("0,0,-1,1")
   msgq={}
   --campaign stats
-  camp_gold,camp_kills,camp_time=0,0,0
+  camp_gold,camp_kills,camp_time,camp_wins=0,0,0,0
   --state inits
   state,prevstate,nextstate="","",""
   --init() function to call for each state
@@ -2722,7 +2730,7 @@ end
 function _drawsplash()
   if fram%10==0 then
     cls(1)
-    print("\*f \*c \f0V1.0a\f6\n\n\*5 \|d\^i\^t\^w\^b\fcpicohaven 2\^-w\^-t\^-i\n\*b \fd\^i\015BY ICEGOAT\014\^-i\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\|b\fd\*2 \015CONTROLS:\014\n\|b\n\*6 \-e\fcさし\fd,\fc🅾️\fd:\-fsELECT\fd  \fc❎\fd:\-fcANCEL\n\*9 \-f(\fcZ\fd)\*8 \-d(\fcX\fd)",0,1)
+    print("\*f \*c \f0V1.0b\f6\n\n\*5 \|d\^i\^t\^w\^b\fcpicohaven 2\^-w\^-t\^-i\n\*b \fd\^i\015BY ICEGOAT\014\^-i\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\|b\fd\*2 \015CONTROLS:\014\n\|b\n\*6 \-e\fcさし\fd,\fc🅾️\fd:\-fsELECT\fd  \fc❎\fd:\-fcANCEL\n\*9 \-f(\fcZ\fd)\*8 \-d(\fcX\fd)",0,1)
     drawselmenu(splashmenu,38,84,7)
     map(121,0,36,36,7,5)
     drawcard("█2➡️5",8,45)
@@ -2861,7 +2869,9 @@ end
 function inittown()
   --play town theme music, though don't restart music if it's already
   -- playing (e.g. if we're already in town or coming from splash screen)
-  if (prevstate=="pretown") music(16)
+  --update: shifted this earlier to initpretown() to avoid need
+  -- to reset it during state transisition from town -> review story -> town
+  --  if (prevstate=="pretown") music(16)
   save_game()
   --selx,sely=1,1 --not needed as reset in changestate()
   townmsg="yOU RETURN TO THE TOWN OF pICOHAVEN. "
