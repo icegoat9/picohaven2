@@ -1,6 +1,8 @@
 --PICOhaven 2 
 --by icegoat, Aug-Oct '23
---(sequel to PICOhaven https://www.lexaloffle.com/bbs/?tid=45105)
+
+--Updates and web-playable version: https://www.lexaloffle.com/bbs/?tid=54850
+--(this is a sequel to PICOhaven 1 at https://www.lexaloffle.com/bbs/?tid=45105)
 
 --This file is run through a script to strip comments and minify
 -- variable names and then included by the main picohaven2.p8 cart, 
@@ -8,9 +10,6 @@
 
 --see also picohaven2_source_doc.md as reference for
 -- main state machine, sprite flags, and global variables
-
---Instructions, updates, and web-playable version:
--- https://www.lexaloffle.com/bbs/?tid=???ADDLINK???
 
 --This file and related files and dev notes will be available in a
 -- github repo: https://github.com/icegoat9/picohaven2
