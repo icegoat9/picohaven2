@@ -10,31 +10,29 @@ PICOhaven 2 adopts a modified & simplified version of the mechanics used in Gloo
 
 ![screenshot](docs/picohaven2_23crop.png)![screenshot](docs/picohaven2_21crop.png)![screenshot](docs/picohaven2_20crop.png)
 
-# Where to Play
+## Where to Play
 
 The simplest option is on the web (on either a computer or phone), on the PICO-8 BBS at: https://www.lexaloffle.com/bbs/?tid=54850 (the below How-To-Play is also posted there).
 
-Alternately, you can download this below "cartridge image" picohaven2_###.p8.png and open it in the PICO-8 desktop application on Windows / Mac / Linux / Raspberry Pi, or load it onto a PICO-8 compatible retrogaming device.
+Alternately, you can download this below "cartridge image" picohaven2_###.p8.png and open it in the PICO-8 desktop application on Windows / Mac / Linux / Raspberry Pi, or load it onto a PICO-8 compatible handheld.
 
-That's right, the entire game (code, graphics, sound, and data) is encoded as 32kB of data hidden inside the below 160x205 pixel image!
+That's right, the entire game (code, graphics, sound, text) is encoded as 32kB of data hidden inside the below 160x205 pixel image!
 
 ![cartridge](releases/picohaven2_v10b.p8.png)
 
-Playing that "cartridge" on the [Powkiddy RGB30](https://powkiddy.com/products/pre-sale-powkiddy-rgb30-rk3566-handheld-game-console-built-in-wifi), for example:
+## How to Play / Rules
 
-![handheld](docs/rgb30.JPG)
+The controls for the game are the standard PICO-8 inputs, with the currently relevant controls usually shown at the bottom of the screen:
+* arrow keys / d-pad
+* "o" button on handhelds (mapped to 'z' on keyboards) as the main "select/action" button
+* occasionally, "x" button (also 'x' on keyboards) for "cancel/undo".
 
-# How to Play / Rules
+The game will also automatically save every time you return to town, so you can close the game / browser and come back to it later on the same device.
 
-The controls for the game are the standard PICO-8 controls:
+If you've previously played PICOhaven 1, the interface and rules are similar enough that you can jump right in, or click below for more details:
 
-These depend on whether you're playing on a keyboard, in a mobile web browser, or on a retro handheld with physical buttons, but in general they are just the arrow keys / D-pad, the "O" button (mapped to the 'z' key on keyboards) as the main "select/action" button, and occasionally the "X" button ('x' key on keyboards) for "cancel/undo".
-
-The game will also automatically save your progress every time you return to town, so you can close the game / browser and come back to it later on the same device.
-
-If you've previously played PICOhaven 1, the interface and rules are similar enough that you can jump right in!
-
-As a general UI note: the game shows your possible actions and the relevant buttons in blue at the bottom of the screen.
+<details>
+<summary>General How-To-Play</summary>
 
 ## High-Level How-To-Play
 
@@ -65,6 +63,10 @@ You'll see periodic (optional) treasure around the world, ranging from gold drop
 ![screenshot](docs/picohaven2_29_gold.png)
 
 That summarizes the core gameplay. There are many additionl details you can probably learn as you play. However, if you want to know more now (or are coming back to this later after being confused about something in the game), read on...
+
+</details>
+<details>
+<summary>Detailed How-To-Play</summary>
 
 ## More Detailed How-To-Play / Tips
 
@@ -117,6 +119,10 @@ In the card selection screen, there is also a "REST" action. You generally don't
 
 But this "long rest" action gives you the benefit of choosing which card to burn and ensuring you shuffle redraw an important card you need for next turn, as well as providing a bit of healing and refreshing a few specific items.
 
+</details>
+<details>
+<summary>Strategy Tips</summary>
+
 ## Strategy Tips
 
 This isn't comprehensive, but a few tips if you're finding this challenging:
@@ -130,9 +136,9 @@ This isn't comprehensive, but a few tips if you're finding this challenging:
 
 You can share your own strategy tips or ask for help in the comments section wherever you found this game (PICO8 BBS, Reddit, Itch, or so on)...
 
-## How-To-Play Video
-
-Maybe some day if people say it would be useful... but I don't expect that many people will even find this game...
+</details>
+<details>
+<summary>Notes for Gloomhaven players</summary>
 
 ## Notes for Gloomhaven players
 
@@ -161,26 +167,29 @@ Despite these differences, many key concepts and strategies from the Gloomhaven 
 * Strategic use of both fast and slow initiatives
 * Direct damage (traps, push) and wound vs. shielded enemies
 * Balancing the value of collecting loot for optional item upgrades vs. the risk of failing a scenario outright if you spend too much time doing that
+</details>
 
-# Special Thanks
+<p>
+
+## Thanks
 
 * To the small group of fans of PICOhaven 1 who left nice comments on it on the BBS or Reddit, such as "What an insane labor of love."
 * To @nephilim, xcw, and seppo for playtesting or useful feedback on early versions of the game, which led to various UI changes and some new gameplay features
 * To @gearfo and @hwd2002 who responded to my "call for remix / reinterpretations of PICOhaven 1 music". I ended up using a variant of @gearfo's composition as the music for PICOhaven 2 (I sadly ran out of space to include a major second theme song, as I ended up using 2/3 of the SFX memory to store binary game data...)
 * And to the entire PICO8 community (on the BBS, Reddit, and Discord)-- what a helpful, supportive group.
 
-# Source Code + Development Documentation
+## Source Code + Development Documentation
 
-This entire game is about 1800 lines of PICO-8 flavored Lua, plus accompanying sprite, sound, and binary data (some data such as the story text is compressed and packed into unused nooks and crannies of the graphics and sound memory, for example).
+This entire game is about 1800 lines of PICO-8 flavored Lua, plus accompanying sprite, sound, and binary data (some data such as the story text is compressed and packed into unused nooks and crannies of the graphics and sound storage areas, for example).
 
-In case it's useful to others trying to tackle a game of this type on PICO-8 (and honestly, mostly for myself in the future when I look back at this), I commented the source code and also put together some supporting documentation here: [picohaven2_source_doc.md](docs/picohaven2_source_doc.md)
+In case it's useful to others trying to tackle a game of this type on PICO-8 (and mostly for myself in the future when I look back at this), I commented the source code and also put together some supporting documentation here: [picohaven2_source_doc.md](docs/picohaven2_source_doc.md)
 
 I also posted some light devlog-ish updates on Mastodon (https://mastodon.gamedev.place/@icegoat) during development.
 
-# Contact Info / Feedback
+## Contact Info / Feedback
 
 If you're one of the small number of people who finds this game and plays it (and the even smaller number who look through this README or the source code), I'd love to hear what you think.
 
 You can reach me on Mastodon, as @icegoat on the [PICO8 BBS](https://www.lexaloffle.com/bbs/?tid=54850), @icegoat9 on [reddit](https://www.reddit.com/r/pico8/comments/17m9jhl/picohaven_2_release_cardbased_tactical_rpg/) and [Itch](https://icegoat9.itch.io/), and so on...
 
-And I expect I may post some bugfixes/updates to the game in the coming months, they'll get posted here / on the lexaloffle BBS / on Mastadon, at least.
+And I expect I'll post some bugfixes/updates to the game in the coming months, they'll get posted here / on the lexaloffle BBS / on Mastadon, at least.
