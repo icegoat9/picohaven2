@@ -2422,7 +2422,7 @@ function initglobals()
   -- 1=easier, 2=normal, 3=hard, 4=brutal
   difficulty=2      
   mindifficulty=4   --for campaign stats: lowest difficulty level played (ignoring starter level), updated in new level
-  difficparams=splt3d("txt;●easier●;hpscale;0.5;gp;1;trapdmg;6|txt;★normal★;hpscale;1;gp;1;trapdmg;6|txt;▥harder▥;hpscale;1.2;gp;2;trapdmg;8|txt;▒brutal▒;hpscale;1.5;gp;2;trapdmg;10",true)
+  difficparams=splt3d("txt;●easier●;hpscale;0.3;gp;2;trapdmg;6|txt;★normal★;hpscale;1;gp;1;trapdmg;6|txt;▥harder▥;hpscale;1.2;gp;2;trapdmg;8|txt;▒brutal▒;hpscale;1.5;gp;2;trapdmg;10",true)
   -----(deprecated) initialize Pause Menu items
   --difficultymenu(0) -- create pause menu item
   --msgspeed(1)  --sets msg_td,animtd
@@ -2579,7 +2579,7 @@ end
 --lint: func::_init
 function initdbs()
   --- init level dbs (long string)
-  lvls=splt3d("name;test level;x0;0;y0;0;unlocks;1;xp;10;gp;0|name;forest;x0;11;y0;0;unlocks;3;xp;10;gp;0|name;funeral;x0;22;y0;0;unlocks;4;xp;60;gp;20|name;ruined chapel;x0;33;y0;0;unlocks;5,6;xp;10;gp;5|name;forest hovel;x0;44;y0;0;unlocks;7;xp;10;gp;0|name;investigate inn;x0;55;y0;0;unlocks;;xp;10;gp;0|name;town cemetery;x0;66;y0;0;unlocks;8;xp;10;gp;0|name;hero mausoleum;x0;77;y0;0;unlocks;9,10,12;xp;50;gp;0|name;pelt collecting (side job);x0;88;y0;0;unlocks;10;xp;5;gp;25|name;rampaging bear  (side job);x0;99;y0;0;unlocks;11;xp;20;gp;0|name;strange noises  (side job);x0;88;y0;11;unlocks;9;xp;20;gp;5|name;council meeting;x0;110;y0;0;unlocks;13;xp;10;gp;20|name;mossy cottage;x0;11;y0;11;unlocks;14;xp;10;gp;0|name;fetid swamp;x0;22;y0;11;unlocks;15;xp;10;gp;0|name;outer cemetery;x0;33;y0;11;unlocks;16;xp;10;gp;0|name;inner cemetery;x0;44;y0;11;unlocks;17;xp;50;gp;30|name;* victory *;x0;55;y0;11;unlocks;18;xp;20;gp;0|name;twisted grove;x0;66;y0;11;unlocks;19;xp;10;gp;0|name;roadside shrine;x0;77;y0;11;unlocks;20,21;xp;10;gp;10|name;mountain vault (side quest);x0;0;y0;11;unlocks;;xp;10;gp;0|name;mountain maze;x0;99;y0;11;unlocks;22;xp;10;gp;0|name;ritual chamber;x0;110;y0;11;unlocks;;xp;50;gp;0",true)
+  lvls=splt3d("name;test level;x0;0;y0;0;unlocks;1;xp;10;gp;0|name;forest;x0;11;y0;0;unlocks;3;xp;10;gp;0|name;funeral;x0;22;y0;0;unlocks;4;xp;60;gp;20|name;ruined chapel;x0;33;y0;0;unlocks;5,6;xp;10;gp;5|name;forest hovel;x0;44;y0;0;unlocks;7;xp;10;gp;0|name;investigate inn;x0;55;y0;0;unlocks;;xp;10;gp;0|name;town cemetery;x0;66;y0;0;unlocks;8;xp;10;gp;0|name;hero mausoleum;x0;77;y0;0;unlocks;9,10,12;xp;50;gp;0|name;vicious wolves  (side job);x0;88;y0;0;unlocks;10;xp;5;gp;25|name;rampaging bear  (side job);x0;99;y0;0;unlocks;11;xp;20;gp;0|name;strange noises  (side job);x0;88;y0;11;unlocks;9;xp;20;gp;5|name;council meeting;x0;110;y0;0;unlocks;13;xp;10;gp;20|name;mossy cottage;x0;11;y0;11;unlocks;14;xp;10;gp;0|name;fetid swamp;x0;22;y0;11;unlocks;15;xp;10;gp;0|name;outer cemetery;x0;33;y0;11;unlocks;16;xp;10;gp;0|name;inner cemetery;x0;44;y0;11;unlocks;17;xp;50;gp;30|name;* victory *;x0;55;y0;11;unlocks;18;xp;20;gp;0|name;twisted grove;x0;66;y0;11;unlocks;19;xp;10;gp;0|name;roadside shrine;x0;77;y0;11;unlocks;20,21;xp;10;gp;10|name;mountain vault (side quest);x0;0;y0;11;unlocks;;xp;10;gp;0|name;mountain maze;x0;99;y0;11;unlocks;22;xp;10;gp;0|name;ritual chamber;x0;110;y0;11;unlocks;;xp;50;gp;0",true)
   --TEMP version that ends the campaign after lvl8, for external testers
   --lvls=splt3d("name;test level;x0;0;y0;0;unlocks;1;xp;10;gp;0|name;forest;x0;11;y0;0;unlocks;3;xp;10;gp;0|name;funeral;x0;22;y0;0;unlocks;4;xp;60;gp;20|name;ruined chapel;x0;33;y0;0;unlocks;5,6;xp;10;gp;5|name;forest hovel;x0;44;y0;0;unlocks;7;xp;10;gp;0|name;investigate inn;x0;55;y0;0;unlocks;;xp;10;gp;0|name;town cemetery;x0;66;y0;0;unlocks;8;xp;10;gp;0|name;hero mausoleum;x0;77;y0;0;unlocks;;xp;50;gp;0|name;pelt collecting (side job);x0;88;y0;0;unlocks;10;xp;5;gp;25|name;rampaging bear  (side job);x0;99;y0;0;unlocks;11;xp;20;gp;0|name;strange noises  (side job);x0;88;y0;11;unlocks;9;xp;20;gp;5|name;council meeting;x0;110;y0;0;unlocks;13;xp;10;gp;20|name;mossy cottage;x0;11;y0;11;unlocks;14;xp;10;gp;0|name;fetid swamp;x0;22;y0;11;unlocks;15;xp;10;gp;0|name;outer cemetery;x0;33;y0;11;unlocks;16;xp;10;gp;0|name;inner cemetery;x0;44;y0;11;unlocks;17;xp;50;gp;30|name;* victory *;x0;55;y0;11;unlocks;18;xp;20;gp;0|name;twisted grove;x0;66;y0;11;unlocks;19;xp;10;gp;0|name;roadside shrine;x0;77;y0;11;unlocks;20,21;xp;10;gp;10|name;mountain vault (side quest);x0;0;y0;11;unlocks;;xp;10;gp;0|name;mountain maze;x0;99;y0;11;unlocks;22;xp;10;gp;0|name;ritual chamber;x0;110;y0;11;unlocks;;xp;50;gp;0",true)
   --unlock starting level
@@ -2729,7 +2729,7 @@ end
 function _drawsplash()
   if fram%10==0 then
     cls(1)
-    print("\*f \*c \f0V1.0b\f6\n\n\*5 \|d\^i\^t\^w\^b\fcpicohaven 2\^-w\^-t\^-i\n\*b \fd\^i\015BY ICEGOAT\014\^-i\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\|b\fd\*2 \015CONTROLS:\014\n\|b\n\*6 \-e\fcさし\fd,\fc🅾️\fd:\-fsELECT\fd  \fc❎\fd:\-fcANCEL\n\*9 \-f(\fcZ\fd)\*8 \-d(\fcX\fd)",0,1)
+    print("\*f \*c \f0V1.0c\f6\n\n\*5 \|d\^i\^t\^w\^b\fcpicohaven 2\^-w\^-t\^-i\n\*b \fd\^i\015BY ICEGOAT\014\^-i\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\|b\fd\*2 \015CONTROLS:\014\n\|b\n\*6 \-e\fcさし\fd,\fc🅾️\fd:\-fsELECT\fd  \fc❎\fd:\-fcANCEL\n\*9 \-f(\fcZ\fd)\*8 \-d(\fcX\fd)",0,1)
     drawselmenu(splashmenu,38,84,7)
     map(121,0,36,36,7,5)
     drawcard("█2➡️5",8,45)
